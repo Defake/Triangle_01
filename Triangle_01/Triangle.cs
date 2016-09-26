@@ -4,7 +4,7 @@ namespace Triangle_01 {
 
 	public class Triangle {
 
-		double[] sides;
+		private double[] sides;
 		//double[] angles; // Angle_0 is in front of Side_0 and others are the same
 
 		public Triangle(double[] sides) {
