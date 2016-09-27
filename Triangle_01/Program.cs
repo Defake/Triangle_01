@@ -12,6 +12,7 @@ namespace Triangle_01 {
 			//Triangle t = new Triangle();
 			//Console.WriteLine(t.GetArea());
 			//Console.ReadKey();
+			
 		}
 
 	}

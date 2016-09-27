@@ -1,4 +1,5 @@
 ﻿using System;
+using Triangle_01;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Triangle.Test {
@@ -11,19 +12,19 @@ namespace Triangle.Test {
 			Triangle_01.Triangle tr;
 
 			if (sides.Length == 3)
-				tr = new Triangle_01.Triangle(sides);
+				tr = Factory.CreateTriangleThreeSides(sides[0], sides[1], sides[2]);
 			else if (sides.Length == 2)
-				tr = new Triangle_01.Triangle(sides, angles[0]);
+				tr = Factory.CreateTriangleTwoSidesAndAngle(sides[0], sides[1], angles[0]);
 			else
-				tr = new Triangle_01.Triangle(sides, angles[0], angles[1]);
+				tr = Factory.CreateTriangleOneSideTwoAngles(sides[0], angles[0], angles[1]);
 
 			Assert.AreEqual(expectedArea, tr.GetArea(), 0.0001);
 
 		}
 
 		[TestMethod]
-		public void ThreeSidesTest() {
-			TestAlgorithm(new double[] { 3, 4, 5 }, new double[0], 6);
+		public void EgyptTriangleOneSide() {
+			TestAlgorithm(new double[] { 3 }, new double[] { 90f, 53.13 }, 6);
 		}
 
 		[TestMethod]
@@ -32,13 +33,9 @@ namespace Triangle.Test {
 		}
 
 		[TestMethod]
-		public void EgyptTriangleOneSide() {
-			TestAlgorithm(new double[] { 3 }, new double[] { 90f, 53.13 }, 6);
+		public void ThreeSidesTest() {
+			TestAlgorithm(new double[] { 3, 4, 5 }, new double[0], 6);
 		}
-
 		
-
-
-
 	}
 }
