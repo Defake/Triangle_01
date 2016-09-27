@@ -6,36 +6,67 @@ namespace Triangle.Test {
 
 	[TestClass]
 	public class TriangleTest {
-		
-		/* Here must be at least and only 3 arguments! */
-		private void TestAlgorithm(double[] sides, double[] angles, double expectedArea) {
-			Triangle_01.Triangle tr;
 
-			if (sides.Length == 3)
-				tr = Factory.CreateTriangleThreeSides(sides[0], sides[1], sides[2]);
-			else if (sides.Length == 2)
-				tr = Factory.CreateTriangleTwoSidesAndAngle(sides[0], sides[1], angles[0]);
-			else
-				tr = Factory.CreateTriangleOneSideTwoAngles(sides[0], angles[0], angles[1]);
-
-			Assert.AreEqual(expectedArea, tr.GetArea(), 0.0001);
-
+		[TestMethod]
+		[ExpectedException(typeof(ArgumentException))]
+		public void Should_ThrowException_When_OneEdgeIsZero() {
+			var edgeNorm = 2;
+			var edgePlohoy = 0;
+			var tr = Triangle_01.Triangle.CreateByThreeEdges(edgeNorm, edgeNorm, edgePlohoy);
 		}
 
 		[TestMethod]
-		public void EgyptTriangleOneSide() {
-			TestAlgorithm(new double[] { 3 }, new double[] { 90f, 53.13 }, 6);
+		[ExpectedException(typeof(ArgumentException))]
+		public void Should_ThrowException_When_OneEdgeIsBelowZero() {
+			var edgeAboveZero = 2;
+			var edgeBelowZero = -100500;
+			var tr = Triangle_01.Triangle.CreateByThreeEdges(edgeAboveZero, edgeAboveZero, edgeBelowZero);
 		}
 
 		[TestMethod]
-		public void EgyptTriangleTwoSides() {
-			TestAlgorithm(new double[] { 3, 4 }, new double[] { 90f }, 6);
+		[ExpectedException(typeof(ArgumentException))]
+		public void Should_ThrowException_When_AnAngleIsBelowZero() {
+			var edgeUsual = 2;
+			var angleNormal = 60;
+			var angleBelowZero = -10;
+			var tr = Triangle_01.Triangle.CreateByTwoEdgesAndAngle(edgeUsual, angleNormal, angleBelowZero);
 		}
 
 		[TestMethod]
-		public void ThreeSidesTest() {
-			TestAlgorithm(new double[] { 3, 4, 5 }, new double[0], 6);
+		[ExpectedException(typeof(ArgumentException))]
+		public void Should_ThrowException_When_AnAngleIsGreaterThan180() {
+			var edgeUsual = 2;
+			var angleNormal = 60;
+			var angleTooBig = 8796549;
+			var tr = Triangle_01.Triangle.CreateByOneEdgeTwoAngles(edgeUsual, angleNormal, angleTooBig);
 		}
-		
+
+		[TestMethod]
+		[ExpectedException(typeof(ArgumentException))]
+		public void Should_ThrowException_When_AnAngleIsEqual180() {
+			var edgeUsual = 2;
+			var angleNormal = 60;
+			var angle180 = 180;
+			var tr = Triangle_01.Triangle.CreateByOneEdgeTwoAngles(edgeUsual, angle180, angleNormal);
+		}
+
+		[TestMethod]
+		public void Should_AreaIsEqual6_When_TriangleCreatedByEdge_3_AndAngles_90_53p13() {
+			var tr = Triangle_01.Triangle.CreateByOneEdgeTwoAngles(3, 90f, 53.13);
+			Assert.AreEqual(6, tr.GetArea(), 0.0001);
+		}
+
+		[TestMethod]
+		public void Should_AreaIsEqual6_When_TriangleCreatedByEdges_3_4_AndAngle_90() {
+			var tr = Triangle_01.Triangle.CreateByTwoEdgesAndAngle(3, 4, 90);
+			Assert.AreEqual(6, tr.GetArea(), 0.0001);
+		}
+
+		[TestMethod]
+		public void Should_AreaIsEqual6_When_TriangleCreatedByEdges_3_4_5() {
+			var tr = Triangle_01.Triangle.CreateByThreeEdges(3, 4, 5);
+			Assert.AreEqual(6, tr.GetArea(), 0.0001);
+		}
+
 	}
 }
