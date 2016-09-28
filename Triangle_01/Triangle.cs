@@ -19,7 +19,8 @@ namespace Triangle_01 {
 		public static Triangle CreateByTwoEdgesAndAngle(double edge0, double edge1, double angle) {
 			CheckAreEdgesValid(edge0, edge1);
 			CheckAreAnglesValid(angle);
-			return new Triangle(edge0, edge1, Math.Sqrt(edge0 * edge0 + edge1 * edge1 - 2 * edge0 * edge1 * Math.Cos(ToRad(angle))));
+			var edge2 = Math.Sqrt(edge0 * edge0 + edge1 * edge1 - 2 * edge0 * edge1 * Math.Cos(ToRad(angle)));
+            return new Triangle(edge0, edge1, edge2);
 		}
 
 		public static Triangle CreateByOneEdgeTwoAngles(double edge0, double angle1, double angle2) {
