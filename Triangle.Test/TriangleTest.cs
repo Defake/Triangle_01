@@ -10,9 +10,9 @@ namespace Triangle.Test {
 		[TestMethod]
 		[ExpectedException(typeof(ArgumentException))]
 		public void Should_ThrowException_When_OneEdgeIsZero() {
-			var edgeNorm = 2;
-			var edgePlohoy = 0;
-			var tr = Triangle_01.Triangle.CreateByThreeEdges(edgeNorm, edgeNorm, edgePlohoy);
+			var edgeNormal = 2;
+			var edgeZero = 0;
+			var tr = Triangle_01.Triangle.CreateByThreeEdges(edgeNormal, edgeNormal, edgeZero);
 		}
 
 		[TestMethod]
