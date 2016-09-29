@@ -1,8 +1,9 @@
 ﻿using System;
-using Triangle_01;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Triangle.Test {
+
+	using Triangle_01;
 
 	[TestClass]
 	public class TriangleTest {
@@ -12,7 +13,7 @@ namespace Triangle.Test {
 		public void Should_ThrowException_When_OneEdgeIsZero() {
 			var edgeNormal = 2;
 			var edgeZero = 0;
-			var tr = Triangle_01.Triangle.CreateByThreeEdges(edgeNormal, edgeNormal, edgeZero);
+			var tr = Triangle.CreateByThreeEdges(edgeNormal, edgeNormal, edgeZero);
 		}
 
 		[TestMethod]
@@ -20,7 +21,7 @@ namespace Triangle.Test {
 		public void Should_ThrowException_When_OneEdgeIsBelowZero() {
 			var edgeAboveZero = 2;
 			var edgeBelowZero = -100500;
-			var tr = Triangle_01.Triangle.CreateByThreeEdges(edgeAboveZero, edgeAboveZero, edgeBelowZero);
+			var tr = Triangle.CreateByThreeEdges(edgeAboveZero, edgeAboveZero, edgeBelowZero);
 		}
 
 		[TestMethod]
@@ -29,7 +30,7 @@ namespace Triangle.Test {
 			var edgeUsual = 2;
 			var angleNormal = 60;
 			var angleBelowZero = -10;
-			var tr = Triangle_01.Triangle.CreateByTwoEdgesAndAngle(edgeUsual, angleNormal, angleBelowZero);
+			var tr = Triangle.CreateByTwoEdgesAndAngle(edgeUsual, angleNormal, angleBelowZero);
 		}
 
 		[TestMethod]
@@ -38,7 +39,7 @@ namespace Triangle.Test {
 			var edgeUsual = 2;
 			var angleNormal = 60;
 			var angleTooBig = 8796549;
-			var tr = Triangle_01.Triangle.CreateByOneEdgeTwoAngles(edgeUsual, angleNormal, angleTooBig);
+			var tr = Triangle.CreateByOneEdgeTwoAngles(edgeUsual, angleNormal, angleTooBig);
 		}
 
 		[TestMethod]
@@ -47,24 +48,24 @@ namespace Triangle.Test {
 			var edgeUsual = 2;
 			var angleNormal = 60;
 			var angle180 = 180;
-			var tr = Triangle_01.Triangle.CreateByOneEdgeTwoAngles(edgeUsual, angle180, angleNormal);
+			var tr = Triangle.CreateByOneEdgeTwoAngles(edgeUsual, angle180, angleNormal);
 		}
 
 		[TestMethod]
 		public void Should_AreaIsEqual6_When_TriangleCreatedByEdge_3_AndAngles_90_53p13() {
-			var tr = Triangle_01.Triangle.CreateByOneEdgeTwoAngles(3, 90f, 53.13);
+			var tr = Triangle.CreateByOneEdgeTwoAngles(3, 90f, 53.13);
 			Assert.AreEqual(6, tr.GetArea(), 0.0001);
 		}
 
 		[TestMethod]
 		public void Should_AreaIsEqual6_When_TriangleCreatedByEdges_3_4_AndAngle_90() {
-			var tr = Triangle_01.Triangle.CreateByTwoEdgesAndAngle(3, 4, 90);
+			var tr = Triangle.CreateByTwoEdgesAndAngle(3, 4, 90);
 			Assert.AreEqual(6, tr.GetArea(), 0.0001);
 		}
 
 		[TestMethod]
 		public void Should_AreaIsEqual6_When_TriangleCreatedByEdges_3_4_5() {
-			var tr = Triangle_01.Triangle.CreateByThreeEdges(3, 4, 5);
+			var tr = Triangle.CreateByThreeEdges(3, 4, 5);
 			Assert.AreEqual(6, tr.GetArea(), 0.0001);
 		}
 
